@@ -1,9 +1,9 @@
 services:
   - type: web
     name: two-js-beverage
-    runtime: static
+    env: static
     staticPublishPath: .
-    buildCommand: ""
+    buildCommand: echo "static"
     headers:
       - path: /*
         name: Cache-Control
