@@ -1,12 +1,12 @@
 :root {
-  --gold: #C8A44E;
-  --gold-light: #E8D5A0;
-  --navy: #1A1F2E;
-  --navy-deep: #0F1219;
+  --gold: #C0311A;       /* sign red — primary accent */
+  --gold-light: #D94420; /* lighter red for hovers */
+  --navy: #0C2878;       /* dark sign blue */
+  --navy-deep: #091E5E;  /* deeper blue for dark sections */
   --cream: #F5F0E6;
   --cream-dark: #E8E0D0;
-  --wine: #6B2D3E;
-  --text: #2C2C2C;
+  --wine: #1548B3;       /* sign blue — used for stats, highlights */
+  --text: #1A1A2E;
   --text-light: #6B6B6B;
   --white: #FFFFFF;
 }
@@ -37,7 +37,7 @@ nav {
 }
 
 nav.scrolled {
-  background: rgba(26, 31, 46, 0.97);
+  background: rgba(12, 40, 120, 0.97);
   box-shadow: 0 2px 30px rgba(0,0,0,0.3);
   padding: 0.8rem 3rem;
 }
@@ -120,7 +120,7 @@ nav.scrolled {
   display: flex !important;
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(15,18,25,0.98);
+  background: rgba(9,30,94,0.98);
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -153,9 +153,9 @@ nav.scrolled {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 80%, rgba(107,45,62,0.35) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(200,164,78,0.15) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(26,31,46,0.4) 0%, transparent 100%);
+    radial-gradient(ellipse 80% 60% at 20% 80%, rgba(192,49,26,0.35) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(21,72,179,0.2) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(9,30,94,0.4) 0%, transparent 100%);
 }
 
 .hero::after {
@@ -331,7 +331,7 @@ section { padding: 6rem 2rem; }
 .about-visual-inner {
   position: absolute;
   inset: 20px;
-  border: 1px solid rgba(200,164,78,0.5);
+  border: 1px solid rgba(255,255,255,0.12);
   border-radius: 4px;
   display: flex;
   flex-direction: column;
@@ -360,7 +360,7 @@ section { padding: 6rem 2rem; }
 .about-visual-corner {
   position: absolute;
   width: 40px; height: 40px;
-  border-color: rgba(200,164,78,0.4);
+  border-color: rgba(255,255,255,0.15);
   border-style: solid;
 }
 .about-visual-corner.tl { top: 10px; left: 10px; border-width: 1px 0 0 1px; }
@@ -406,7 +406,7 @@ section { padding: 6rem 2rem; }
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 50% 50% at 80% 100%, rgba(107,45,62,0.2) 0%, transparent 60%);
+  background: radial-gradient(ellipse 50% 50% at 80% 100%, rgba(192,49,26,0.2) 0%, transparent 60%);
 }
 
 .offerings-inner {
@@ -463,8 +463,8 @@ section { padding: 6rem 2rem; }
 .offering-icon {
   width: 50px; height: 50px;
   border-radius: 12px;
-  background: rgba(200,164,78,0.1);
-  border: 1px solid rgba(200,164,78,0.15);
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -519,7 +519,7 @@ section { padding: 6rem 2rem; }
 }
 
 .rating-stars { display: flex; gap: 3px; }
-.rating-stars svg { width: 22px; height: 22px; fill: var(--gold); }
+.rating-stars svg { width: 22px; height: 22px; fill: #C8A44E; }
 .rating-count { font-size: 0.85rem; color: var(--text-light); margin-top: 0.3rem; }
 
 .reviews-grid {
@@ -548,7 +548,7 @@ section { padding: 6rem 2rem; }
   gap: 2px;
   margin-bottom: 1rem;
 }
-.review-card .stars svg { width: 14px; height: 14px; fill: var(--gold); }
+.review-card .stars svg { width: 14px; height: 14px; fill: #C8A44E; }
 
 .star-dim { opacity: 0.3; }
 
@@ -596,7 +596,7 @@ section { padding: 6rem 2rem; }
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 60% 60% at 30% 80%, rgba(200,164,78,0.08) 0%, transparent 50%);
+  background: radial-gradient(ellipse 60% 60% at 30% 80%, rgba(192,49,26,0.1) 0%, transparent 50%);
 }
 
 .visit-inner {
@@ -694,7 +694,7 @@ footer {
 .footer-divider {
   width: 40px;
   height: 1px;
-  background: rgba(200,164,78,0.3);
+  background: rgba(255,255,255,0.15);
   margin: 0 auto 1rem;
 }
 
@@ -731,7 +731,7 @@ footer p {
 
 /* ── RESPONSIVE: TABLET (600–900px) ── */
 @media (max-width: 900px) {
-  nav { padding: 1rem 1.5rem; background: rgba(15,18,25,0.95); }
+  nav { padding: 1rem 1.5rem; background: rgba(9,30,94,0.95); }
   nav.scrolled { padding: 0.8rem 1.5rem; }
   .nav-logo-svg { height: 38px; }
 
