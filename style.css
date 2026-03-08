@@ -43,17 +43,18 @@ nav.scrolled {
 }
 
 .nav-logo {
-  font-family: 'Playfair Display', serif;
-  font-weight: 900;
-  font-size: 1.5rem;
-  color: var(--gold);
-  letter-spacing: 0.02em;
   text-decoration: none;
   z-index: 201;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
-.nav-logo span { color: var(--cream); font-weight: 400; font-style: italic; font-size: 0.85em; }
+.nav-logo-svg {
+  height: 46px;
+  width: auto;
+  display: block;
+}
 
 .nav-links { display: flex; gap: 2.2rem; align-items: center; }
 .nav-links a {
@@ -340,30 +341,19 @@ section { padding: 6rem 2rem; }
   padding: 2rem;
 }
 
-.about-visual-inner .est {
-  font-family: 'Playfair Display', serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--gold);
+.about-logo-svg {
+  width: min(260px, 85%);
+  height: auto;
+  display: block;
   margin-bottom: 1.5rem;
 }
 
-.about-visual-inner .logo-large {
-  font-family: 'Playfair Display', serif;
-  font-size: 3.5rem;
-  font-weight: 900;
-  color: var(--cream);
-  line-height: 1;
-  margin-bottom: 0.3rem;
-}
-
-.about-visual-inner .tagline {
+.about-sign-address {
   font-size: 0.75rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(245,240,230,0.45);
-  margin-top: 1.5rem;
+  color: rgba(245,240,230,0.4);
+  text-align: center;
 }
 
 .about-visual-corner {
@@ -742,6 +732,7 @@ footer p {
 @media (max-width: 900px) {
   nav { padding: 1rem 1.5rem; background: rgba(15,18,25,0.95); }
   nav.scrolled { padding: 0.8rem 1.5rem; }
+  .nav-logo-svg { height: 38px; }
 
   .nav-links { display: none; }
   .hamburger { display: flex; }
@@ -761,6 +752,7 @@ footer p {
 @media (max-width: 600px) {
   section { padding: 4rem 1.25rem; }
 
+  .nav-logo-svg { height: 32px; }
   .hero-content { padding: 5rem 1.25rem 2rem; }
   .hero-sub { font-size: 1rem; }
   .hero-buttons { flex-direction: column; align-items: center; }
