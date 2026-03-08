@@ -4,7 +4,7 @@
   if (!gate) return; // already hidden by .age-verified class
 
   function dismiss() {
-    sessionStorage.setItem('ageVerified', '1');
+    localStorage.setItem('ageVerified', '1');
     gate.classList.add('age-gate-exit');
     setTimeout(function () {
       gate.style.display = 'none';
@@ -84,21 +84,48 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   } catch (e) { /* Intl not available — just leave badge hidden */ }
 })();
 
-// ── FORM SUCCESS BANNER ───────────────────────────────────
-// FormSubmit.co redirects back with ?sent=1 after submission.
-if (new URLSearchParams(window.location.search).get('sent') === '1') {
-  const banner = document.createElement('div');
-  banner.setAttribute('role', 'status');
-  banner.style.cssText = [
-    'position:fixed', 'bottom:1.5rem', 'left:50%', 'transform:translateX(-50%)',
-    'background:#1548B3', 'color:#fff', 'padding:1rem 2rem', 'border-radius:8px',
-    'font-family:DM Sans,sans-serif', 'font-size:0.92rem', 'font-weight:500',
-    'box-shadow:0 8px 30px rgba(0,0,0,0.3)', 'z-index:9000',
-    'max-width:90vw', 'text-align:center', 'animation:fadeUp 0.5s ease-out'
-  ].join(';');
-  banner.textContent = '✓ Request sent! We\'ll reach out soon to confirm your order.';
-  document.body.appendChild(banner);
-  setTimeout(() => banner.remove(), 6000);
-  // Clean URL so refreshing doesn't re-show banner
-  history.replaceState({}, '', window.location.pathname);
-}
+// ── FORM AJAX SUBMISSION (Formspree) ─────────────────────
+(function () {
+  var form = document.getElementById('order-form');
+  if (!form) return;
+
+  var successEl = document.getElementById('form-success');
+  var errorEl   = document.getElementById('form-error');
+  var submitBtn = form.querySelector('.order-submit');
+  var originalBtnHTML = submitBtn.innerHTML;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Disable & show loading state
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Sending\u2026';
+    errorEl.hidden = true;
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function (res) {
+      if (res.ok) {
+        // Hide all form fields, show success block
+        Array.from(form.children).forEach(function (el) {
+          if (el.id !== 'form-success' && el.id !== 'form-error') {
+            el.hidden = true;
+          }
+        });
+        successEl.hidden = false;
+        successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        return res.json().then(function (data) { throw data; });
+      }
+    })
+    .catch(function () {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnHTML;
+      errorEl.hidden = false;
+      errorEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  });
+})();

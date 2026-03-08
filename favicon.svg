@@ -1,6 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="4" fill="#1548B3"/>
-  <rect y="22" width="32" height="10" rx="0" fill="#C0311A"/>
-  <rect x="0" y="22" width="32" height="1.5" fill="rgba(255,255,255,0.25)"/>
-  <text x="16" y="19" text-anchor="middle" fill="white" font-size="16" font-weight="900" font-family="Impact,'Arial Black',Arial,sans-serif">2J</text>
+  <!-- Blue background -->
+  <rect width="32" height="32" rx="6" fill="#1548B3"/>
+  <!-- Beer mug: body -->
+  <path d="M8 8h12l-1.5 16H9.5L8 8z" fill="none" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Beer mug: handle -->
+  <path d="M20 12h3a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-3" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <!-- Foam bubbles -->
+  <circle cx="12" cy="8" r="1.5" fill="white" opacity="0.9"/>
+  <circle cx="15.5" cy="7" r="1.5" fill="white" opacity="0.9"/>
+  <circle cx="19" cy="8" r="1.5" fill="white" opacity="0.9"/>
 </svg>
