@@ -469,7 +469,11 @@ section { padding: 6rem 2rem; }
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5rem;
-  font-size: 1.4rem;
+}
+
+.offering-icon svg {
+  width: 24px; height: 24px;
+  stroke: rgba(245,240,230,0.75);
 }
 
 .offering-card h3 {
@@ -899,66 +903,66 @@ footer p {
   font-weight: 300;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   DELIVERY STRIP
-   ═══════════════════════════════════════════════════════════ */
-.delivery-strip {
-  background: var(--navy);
-  border-top: 1px solid rgba(255,255,255,0.06);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  padding: 1.1rem 2rem;
-}
-
-.delivery-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.delivery-label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: rgba(245,240,230,0.5);
-  font-size: 0.75rem;
-  font-weight: 600;
+/* ── Open / Closed badge ── */
+.open-badge {
+  display: inline-block;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  white-space: nowrap;
-  flex-shrink: 0;
+  padding: 0.18rem 0.55rem;
+  border-radius: 50px;
+  vertical-align: middle;
+  margin-left: 0.45rem;
+  line-height: 1.6;
 }
 
-.delivery-apps {
+.open-badge-open {
+  background: rgba(74,197,50,0.15);
+  color: #7AE05A;
+  border: 1px solid rgba(74,197,50,0.25);
+}
+
+.open-badge-closed {
+  background: rgba(192,49,26,0.15);
+  color: #E8755A;
+  border: 1px solid rgba(192,49,26,0.25);
+}
+
+/* ── Reviews CTA ── */
+.reviews-cta {
+  text-align: center;
+  margin-top: 3rem;
   display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.delivery-btn {
-  display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.55rem 1.2rem;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 6px;
-  color: var(--cream);
-  font-size: 0.82rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: background 0.25s, border-color 0.25s, transform 0.2s;
-  white-space: nowrap;
+  gap: 1rem;
 }
 
-.delivery-btn:hover {
-  background: rgba(255,255,255,0.12);
-  border-color: rgba(255,255,255,0.25);
-  transform: translateY(-1px);
+.reviews-cta p {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+.reviews-cta-btn {
+  color: var(--navy);
+  border-color: rgba(12,40,120,0.25);
+  font-size: 0.82rem;
+  padding: 0.7rem 1.6rem;
+}
+
+.reviews-cta-btn:hover {
+  border-color: var(--navy);
+  color: var(--navy);
+}
+
+/* ── Footer responsible drinking ── */
+.footer-drink-resp {
+  margin-top: 1rem;
+  font-size: 0.72rem;
+  color: rgba(245,240,230,0.2);
+  font-style: italic;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1007,8 +1011,13 @@ footer p {
 }
 
 .order-info-icon {
-  font-size: 1.5rem;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.7rem;
+}
+
+.order-info-icon svg {
+  width: 22px; height: 22px;
+  stroke: var(--wine);
+  display: block;
 }
 
 .order-info-card h3 {
@@ -1148,8 +1157,6 @@ footer p {
     align-items: start;
   }
   .order-call-cta { grid-column: 1 / -1; }
-
-  .delivery-inner { gap: 1rem; }
 }
 
 @media (max-width: 600px) {
@@ -1158,8 +1165,4 @@ footer p {
   .order-form { padding: 1.8rem 1.25rem; }
 
   .age-gate-inner { padding: 2rem 1.5rem; }
-
-  .delivery-strip { padding: 1rem 1.25rem; }
-  .delivery-label { font-size: 0.7rem; }
-  .delivery-btn { font-size: 0.78rem; padding: 0.5rem 1rem; }
 }

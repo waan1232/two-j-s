@@ -65,6 +65,25 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+// ── OPEN / CLOSED STATUS ──────────────────────────────────
+(function () {
+  var badge = document.getElementById('open-status');
+  if (!badge) return;
+  try {
+    var parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Detroit',
+      hour: 'numeric', minute: 'numeric', hour12: false
+    }).formatToParts(new Date());
+    var h = parseInt(parts.find(function (p) { return p.type === 'hour'; }).value);
+    var m = parseInt(parts.find(function (p) { return p.type === 'minute'; }).value);
+    var total = h * 60 + m;
+    // Open 10:00 AM–10:00 PM (600–1320 minutes)
+    var open = total >= 600 && total < 1320;
+    badge.textContent = open ? 'Open Now' : 'Closed';
+    badge.className = 'open-badge ' + (open ? 'open-badge-open' : 'open-badge-closed');
+  } catch (e) { /* Intl not available — just leave badge hidden */ }
+})();
+
 // ── FORM SUCCESS BANNER ───────────────────────────────────
 // FormSubmit.co redirects back with ?sent=1 after submission.
 if (new URLSearchParams(window.location.search).get('sent') === '1') {
