@@ -1,7 +1,11 @@
 // ── AGE GATE ──────────────────────────────────────────────
 (function () {
   var gate = document.getElementById('age-gate');
-  if (!gate) return; // already hidden by .age-verified class
+  if (!gate) return;
+
+  // Already verified — CSS hides the gate but the element still exists in DOM.
+  // Do NOT lock scroll; nothing to do.
+  if (document.documentElement.classList.contains('age-verified')) return;
 
   function dismiss() {
     localStorage.setItem('ageVerified', '1');
