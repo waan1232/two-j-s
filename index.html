@@ -56,21 +56,29 @@
 <!-- NAV -->
 <nav id="navbar">
   <a href="#" class="nav-logo" aria-label="Two J's Liquor — Home">
-    <svg class="nav-logo-svg" viewBox="0 0 280 84" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-      <!-- Blue background -->
-      <rect width="280" height="84" rx="5" fill="#1548B3"/>
-      <!-- Red right half of bottom bar -->
-      <rect x="140" y="55" width="140" height="29" fill="#C0311A"/>
-      <!-- Horizontal divider -->
-      <rect y="53" width="280" height="2" fill="rgba(255,255,255,0.2)"/>
-      <!-- Vertical divider -->
-      <rect x="139" y="55" width="2" height="29" fill="rgba(255,255,255,0.25)"/>
-      <!-- Main title -->
-      <text x="140" y="35" text-anchor="middle" fill="white" font-size="27" font-weight="900" font-family="Impact,'Arial Black',Arial,sans-serif">Two J's Liquor</text>
-      <!-- Bottom left -->
-      <text x="70" y="72" text-anchor="middle" fill="white" font-size="9" font-weight="700" font-family="Arial,sans-serif" letter-spacing="2">BEER · WINE</text>
-      <!-- Bottom right -->
-      <text x="210" y="72" text-anchor="middle" fill="white" font-size="9" font-weight="700" font-family="Arial,sans-serif" letter-spacing="1.5">TOBACCO · GROCERY</text>
+    <svg class="nav-logo-svg" viewBox="0 0 260 78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <defs>
+        <clipPath id="nav-badge-clip">
+          <rect width="260" height="78" rx="5"/>
+        </clipPath>
+      </defs>
+      <g clip-path="url(#nav-badge-clip)">
+        <!-- Navy background -->
+        <rect width="260" height="78" fill="#1A1F2E"/>
+        <!-- Full-width red bottom strip -->
+        <rect y="52" width="260" height="26" fill="#C0311A"/>
+        <!-- Subtle gold divider between top and bottom -->
+        <rect y="50" width="260" height="2" fill="rgba(200,164,78,0.35)"/>
+        <!-- Vertical divider within red strip -->
+        <rect x="129" y="52" width="2" height="26" fill="rgba(255,255,255,0.2)"/>
+      </g>
+      <!-- Gold border -->
+      <rect width="260" height="78" rx="5" fill="none" stroke="#C8A44E" stroke-width="1.5"/>
+      <!-- Main title in gold -->
+      <text x="130" y="33" text-anchor="middle" fill="#C8A44E" font-size="24" font-weight="900" font-family="Impact,'Arial Black',Arial,sans-serif">Two J's Liquor</text>
+      <!-- Bottom labels -->
+      <text x="64" y="68" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="8.5" font-weight="700" font-family="Arial,sans-serif" letter-spacing="2">BEER · WINE</text>
+      <text x="196" y="68" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="8.5" font-weight="700" font-family="Arial,sans-serif" letter-spacing="1.5">TOBACCO · GROCERY</text>
     </svg>
   </a>
   <div class="nav-links">
@@ -113,15 +121,23 @@
     <div class="about-visual fade-in">
       <div class="about-visual-bg">
         <div class="about-visual-inner">
-          <svg class="about-logo-svg" viewBox="0 0 280 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two J's Liquor store sign">
+          <svg class="about-logo-svg" viewBox="0 0 260 78" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two J's Liquor store sign">
             <title>Two J's Liquor</title>
-            <rect width="280" height="84" rx="5" fill="#1548B3"/>
-            <rect x="140" y="55" width="140" height="29" fill="#C0311A"/>
-            <rect y="53" width="280" height="2" fill="rgba(255,255,255,0.2)"/>
-            <rect x="139" y="55" width="2" height="29" fill="rgba(255,255,255,0.25)"/>
-            <text x="140" y="35" text-anchor="middle" fill="white" font-size="27" font-weight="900" font-family="Impact,'Arial Black',Arial,sans-serif">Two J's Liquor</text>
-            <text x="70" y="72" text-anchor="middle" fill="white" font-size="9" font-weight="700" font-family="Arial,sans-serif" letter-spacing="2">BEER · WINE</text>
-            <text x="210" y="72" text-anchor="middle" fill="white" font-size="9" font-weight="700" font-family="Arial,sans-serif" letter-spacing="1.5">TOBACCO · GROCERY</text>
+            <defs>
+              <clipPath id="about-badge-clip">
+                <rect width="260" height="78" rx="5"/>
+              </clipPath>
+            </defs>
+            <g clip-path="url(#about-badge-clip)">
+              <rect width="260" height="78" fill="#1A1F2E"/>
+              <rect y="52" width="260" height="26" fill="#C0311A"/>
+              <rect y="50" width="260" height="2" fill="rgba(200,164,78,0.35)"/>
+              <rect x="129" y="52" width="2" height="26" fill="rgba(255,255,255,0.2)"/>
+            </g>
+            <rect width="260" height="78" rx="5" fill="none" stroke="#C8A44E" stroke-width="1.5"/>
+            <text x="130" y="33" text-anchor="middle" fill="#C8A44E" font-size="24" font-weight="900" font-family="Impact,'Arial Black',Arial,sans-serif">Two J's Liquor</text>
+            <text x="64" y="68" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="8.5" font-weight="700" font-family="Arial,sans-serif" letter-spacing="2">BEER · WINE</text>
+            <text x="196" y="68" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="8.5" font-weight="700" font-family="Arial,sans-serif" letter-spacing="1.5">TOBACCO · GROCERY</text>
           </svg>
           <div class="about-sign-address">5374 Plainfield Ave NE · Grand Rapids, MI</div>
         </div>
