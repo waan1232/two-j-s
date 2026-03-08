@@ -1210,6 +1210,48 @@ footer p {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   BACK TO TOP
+   ═══════════════════════════════════════════════════════════ */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 150;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--cream);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.25s, transform 0.25s, background 0.2s;
+  pointer-events: none;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.back-to-top:hover { background: var(--navy-deep); }
+.back-to-top:active { transform: translateY(1px); }
+
+/* On mobile, float above the sticky action bar */
+@media (max-width: 767px) {
+  .back-to-top {
+    bottom: calc(64px + env(safe-area-inset-bottom, 0px) + 12px);
+    right: 1rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
    MOBILE ACTION BAR
    Fixed at viewport bottom on phones only. Hidden on desktop.
    ═══════════════════════════════════════════════════════════ */

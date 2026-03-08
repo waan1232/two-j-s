@@ -65,6 +65,26 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+// ── BACK TO TOP ───────────────────────────────────────────
+(function () {
+  var btn = document.getElementById('back-to-top');
+  if (!btn) return;
+
+  btn.hidden = false; // remove the HTML hidden attr; visibility controlled by CSS class
+
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 400) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  }, { passive: true });
+
+  btn.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+
 // ── OPEN / CLOSED STATUS ──────────────────────────────────
 (function () {
   var badge = document.getElementById('open-status');
