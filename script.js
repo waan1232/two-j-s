@@ -1,4 +1,34 @@
-// Mobile nav
+// ── AGE GATE ──────────────────────────────────────────────
+(function () {
+  var gate = document.getElementById('age-gate');
+  if (!gate) return; // already hidden by .age-verified class
+
+  function dismiss() {
+    sessionStorage.setItem('ageVerified', '1');
+    gate.classList.add('age-gate-exit');
+    setTimeout(function () {
+      gate.style.display = 'none';
+      document.body.style.overflow = '';
+    }, 520);
+  }
+
+  // Prevent page scroll while gate is visible
+  document.body.style.overflow = 'hidden';
+
+  document.getElementById('age-yes').addEventListener('click', dismiss);
+
+  document.getElementById('age-no').addEventListener('click', function () {
+    window.location.href = 'https://www.google.com';
+  });
+
+  // Keyboard: Enter/Space on focused button is handled natively.
+  // Also allow Escape to close (treat as "yes" — user can already see the page behind overlay)
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') dismiss();
+  }, { once: true });
+})();
+
+// ── Mobile nav
 const hamburger = document.getElementById('hamburger-btn');
 const navLinks = document.querySelector('.nav-links');
 
@@ -34,3 +64,22 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ── FORM SUCCESS BANNER ───────────────────────────────────
+// FormSubmit.co redirects back with ?sent=1 after submission.
+if (new URLSearchParams(window.location.search).get('sent') === '1') {
+  const banner = document.createElement('div');
+  banner.setAttribute('role', 'status');
+  banner.style.cssText = [
+    'position:fixed', 'bottom:1.5rem', 'left:50%', 'transform:translateX(-50%)',
+    'background:#1548B3', 'color:#fff', 'padding:1rem 2rem', 'border-radius:8px',
+    'font-family:DM Sans,sans-serif', 'font-size:0.92rem', 'font-weight:500',
+    'box-shadow:0 8px 30px rgba(0,0,0,0.3)', 'z-index:9000',
+    'max-width:90vw', 'text-align:center', 'animation:fadeUp 0.5s ease-out'
+  ].join(';');
+  banner.textContent = '✓ Request sent! We\'ll reach out soon to confirm your order.';
+  document.body.appendChild(banner);
+  setTimeout(() => banner.remove(), 6000);
+  // Clean URL so refreshing doesn't re-show banner
+  history.replaceState({}, '', window.location.pathname);
+}

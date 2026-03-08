@@ -52,12 +52,51 @@
 </script>
 
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+<!-- Age gate: mark verified visitors before first paint to suppress the overlay -->
+<script>if(sessionStorage.getItem('ageVerified'))document.documentElement.classList.add('age-verified');</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<!-- ══════════════════════════════════════════════════════════
+     AGE VERIFICATION GATE
+     Legal requirement for alcohol retail websites.
+     "No" redirects to Google. "Yes" sets a sessionStorage flag
+     so the gate is only shown once per browser session.
+     ══════════════════════════════════════════════════════════ -->
+<div id="age-gate" role="dialog" aria-modal="true" aria-labelledby="age-gate-heading">
+  <div class="age-gate-inner">
+    <!-- Logo badge -->
+    <svg class="age-gate-logo" viewBox="0 0 260 78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs><clipPath id="ag-clip"><rect width="260" height="78" rx="5"/></clipPath></defs>
+      <g clip-path="url(#ag-clip)">
+        <rect width="260" height="78" fill="#1548B3"/>
+        <rect y="52" width="260" height="26" fill="#C0311A"/>
+        <rect y="50" width="260" height="2" fill="rgba(255,255,255,0.2)"/>
+        <rect x="129" y="52" width="2" height="26" fill="rgba(255,255,255,0.2)"/>
+      </g>
+      <text x="130" y="33" text-anchor="middle" fill="white" font-size="24" font-weight="900" font-family="Impact,'Arial Black',Arial,sans-serif">Two J's Liquor</text>
+      <text x="64"  y="68" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="8.5" font-weight="700" font-family="Arial,sans-serif" letter-spacing="2">BEER · WINE</text>
+      <text x="196" y="68" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="8.5" font-weight="700" font-family="Arial,sans-serif" letter-spacing="1.5">TOBACCO · GROCERY</text>
+    </svg>
+
+    <div class="age-gate-badge">Age Verification Required</div>
+    <h2 id="age-gate-heading">Are you 21 or older?</h2>
+    <p class="age-gate-sub">You must be of legal drinking age to enter this website. This site sells and promotes alcohol.</p>
+
+    <div class="age-gate-btns">
+      <button id="age-yes" class="btn btn-primary">Yes, I'm 21 or Older</button>
+      <button id="age-no"  class="age-no-link">No, take me away</button>
+    </div>
+
+    <p class="age-gate-fine">By clicking "Yes" you confirm you are of legal drinking age in your state or jurisdiction and agree to our terms of use. Please drink responsibly.</p>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav id="navbar">
@@ -89,6 +128,7 @@
     <a href="#about">About</a>
     <a href="#offerings">Selection</a>
     <a href="#reviews">Reviews</a>
+    <a href="#order">Special Orders</a>
     <a href="#visit">Visit</a>
     <a href="tel:6163636071" class="nav-cta">Call Us</a>
   </div>
@@ -118,6 +158,41 @@
     <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
   </div>
 </section>
+
+<!-- ══════════════════════════════════════════════════════════
+     DELIVERY APPS STRIP
+     TODO: Replace each href="#" with your actual store page URL
+     on each platform once your store is listed.
+     Common URLs follow the pattern:
+       DoorDash  → https://www.doordash.com/store/YOUR-STORE-SLUG/
+       Instacart → https://www.instacart.com/store/YOUR-STORE-SLUG/storefront
+       Uber Eats → https://www.ubereats.com/store/YOUR-STORE-SLUG/
+     ══════════════════════════════════════════════════════════ -->
+<div class="delivery-strip">
+  <div class="delivery-inner">
+    <div class="delivery-label">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Order for Delivery
+    </div>
+    <div class="delivery-apps">
+      <!-- Replace href="#" with your DoorDash store URL -->
+      <a href="#" class="delivery-btn" target="_blank" rel="noopener noreferrer" aria-label="Order on DoorDash">
+        <svg width="20" height="20" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#FF3008"/><path d="M10 20c0-5.5 4.5-10 10-10h4v4h-4c-3.3 0-6 2.7-6 6s2.7 6 6 6h8v-4h2v8H20c-5.5 0-10-4.5-10-10z" fill="white"/></svg>
+        DoorDash
+      </a>
+      <!-- Replace href="#" with your Instacart store URL -->
+      <a href="#" class="delivery-btn" target="_blank" rel="noopener noreferrer" aria-label="Order on Instacart">
+        <svg width="20" height="20" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#43B02A"/><circle cx="20" cy="17" r="5" fill="white"/><path d="M12 30c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        Instacart
+      </a>
+      <!-- Replace href="#" with your Uber Eats store URL -->
+      <a href="#" class="delivery-btn" target="_blank" rel="noopener noreferrer" aria-label="Order on Uber Eats">
+        <svg width="20" height="20" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#000"/><rect x="10" y="16" width="20" height="8" rx="4" fill="white"/></svg>
+        Uber Eats
+      </a>
+    </div>
+  </div>
+</div>
 
 <!-- ABOUT -->
 <section class="about" id="about">
@@ -322,6 +397,109 @@
           title="Two J's Liquor location map">
         </iframe>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SPECIAL ORDERS & KEG REQUESTS
+     Uses FormSubmit.co — a free, no-backend form service.
+     TODO: Replace "STORE_EMAIL@example.com" in the form action
+     with the store's real email address before going live.
+     First submission will send a one-time activation email.
+     ══════════════════════════════════════════════════════════ -->
+<section class="order-section" id="order">
+  <div class="order-inner">
+    <div class="order-header fade-in">
+      <div class="section-label">Special Orders &amp; Kegs</div>
+      <h2 class="section-title">Need Something Big?</h2>
+      <p class="section-subtitle">Planning a party, need a keg, or looking for a specific bottle? Fill out the form and we'll reach out to confirm availability and pricing — usually same day.</p>
+    </div>
+
+    <div class="order-body">
+      <div class="order-aside fade-in">
+        <div class="order-info-card">
+          <div class="order-info-icon">🍺</div>
+          <h3>Keg Orders</h3>
+          <p>We carry a rotating keg selection. Order ahead and we'll have it ready for pickup.</p>
+        </div>
+        <div class="order-info-card">
+          <div class="order-info-icon">🎉</div>
+          <h3>Party Packages</h3>
+          <p>Stocking a party? Tell us your headcount and budget and we'll put together a package.</p>
+        </div>
+        <div class="order-info-card">
+          <div class="order-info-icon">🥃</div>
+          <h3>Special Bottles</h3>
+          <p>Looking for something specific we don't have on the shelf? Ask — we can often special order it.</p>
+        </div>
+        <div class="order-call-cta">
+          <p>Prefer to call?</p>
+          <a href="tel:6163636071" class="btn btn-primary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 11.9a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.22 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            (616) 363-6071
+          </a>
+        </div>
+      </div>
+
+      <!-- TODO: Replace STORE_EMAIL@example.com with the store's real email -->
+      <form class="order-form fade-in"
+            action="https://formsubmit.co/STORE_EMAIL@example.com"
+            method="POST">
+        <!-- FormSubmit.co configuration -->
+        <input type="hidden" name="_subject"  value="Special Order / Keg Request — Two J's Liquor">
+        <input type="hidden" name="_captcha"  value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next"     value="https://two-j-s-s.onrender.com/?sent=1">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ord-name">Your Name <span aria-hidden="true">*</span></label>
+            <input type="text"  id="ord-name"  name="name"   required placeholder="Jane Smith">
+          </div>
+          <div class="form-group">
+            <label for="ord-phone">Phone Number <span aria-hidden="true">*</span></label>
+            <input type="tel"   id="ord-phone" name="phone"  required placeholder="(616) 555-0100">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ord-email">Email Address <span aria-hidden="true">*</span></label>
+            <input type="email" id="ord-email" name="email"  required placeholder="jane@example.com">
+          </div>
+          <div class="form-group">
+            <label for="ord-type">Request Type <span aria-hidden="true">*</span></label>
+            <select id="ord-type" name="request_type" required>
+              <option value="">Select a type…</option>
+              <option value="Keg Order">Keg Order</option>
+              <option value="Party Package">Party Package</option>
+              <option value="Large / Bulk Order">Large / Bulk Order</option>
+              <option value="Special Bottle Request">Special Bottle Request</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group form-full">
+          <label for="ord-details">Details — brand, quantity, event info, etc. <span aria-hidden="true">*</span></label>
+          <textarea id="ord-details" name="details" required rows="5"
+                    placeholder="e.g. Half-barrel of Founders All Day IPA for a party of 50 on April 20th. Need it ready by noon."></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ord-date">Event Date <span class="form-optional">(if applicable)</span></label>
+            <input type="date" id="ord-date" name="event_date">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary order-submit">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Send My Request
+        </button>
+        <p class="form-privacy">We only use your info to follow up on your order. We never share or sell it.</p>
+      </form>
     </div>
   </div>
 </section>
