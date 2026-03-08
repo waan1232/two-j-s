@@ -17,15 +17,29 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
   # Control referrer information
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
 
-  # Content Security Policy
-  # Allows: self, Google Fonts, Google Maps embed
-  Header always set Content-Security-Policy "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; frame-src https://www.google.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; connect-src 'none';"
+  # Content Security Policy — no unsafe-inline anywhere
+  # Scripts: only from this server (script.js)
+  # Styles: only from this server (style.css) + Google Fonts CSS
+  # Fonts: only from Google Fonts static CDN
+  # Frames: only Google Maps embed
+  # Images: only from this server + data: URIs (used in CSS grain texture)
+  # Everything else: blocked
+  Header always set Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; frame-src https://www.google.com; img-src 'self' data:; connect-src 'none'; base-uri 'self'; form-action 'none';"
 
-  # HTTP Strict Transport Security (1 year)
-  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  # HTTP Strict Transport Security (1 year, preload-ready)
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 
-  # Prevent browsers from sending referrer to cross-origin frames
-  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  # Disable access to this site from cross-origin documents
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+
+  # Prevent other sites from embedding your resources
+  Header always set Cross-Origin-Resource-Policy "same-origin"
+
+  # Block Adobe Flash and PDF cross-domain requests
+  Header always set X-Permitted-Cross-Domain-Policies "none"
+
+  # Restrict browser features
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), interest-cohort=()"
 </IfModule>
 
 # Disable directory listing
@@ -33,3 +47,18 @@ Options -Indexes
 
 # Disable server signature
 ServerSignature Off
+
+# Set correct MIME types (prevents MIME sniffing attacks)
+<IfModule mod_mime.c>
+  AddType text/html .html
+  AddType text/css .css
+  AddType application/javascript .js
+</IfModule>
+
+# Cache static assets (safe — these files don't change without a deploy)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/html "access plus 1 hour"
+</IfModule>
